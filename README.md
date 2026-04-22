@@ -3,6 +3,12 @@
 The .bps patch file can be downloaded in the **GitHub Releases** tab.
 
 
+### Supported Platforms
+* Parallel Launcher - Use GlideN64 with Overclock VI and Overclock CPU enabled
+* Luna's PJ64
+* Nintendo 64 - Use save type SRAM-128
+
+
 ### Soruce Code Guide
 
 `game/module.c` - Code for module system.
