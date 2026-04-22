@@ -346,6 +346,16 @@ void module_update(void) {
         gMarioState->playerGravityControl = TRUE;
     }
 
+    if (module_execution_threads[MODULE_EXEC_VANITY].begin == TRUE) {
+        gMarioEyeColor[0] = 32;
+        gMarioEyeColor[1] = 107;
+        gMarioEyeColor[2] = 222;
+        default_clothes_color(skinLights,0xFEC179FF,0x7F5F39FF);
+        default_clothes_color(jeanLights,0x0000FFFF,0x00007FFF);
+        default_clothes_color(capLights,0xFF0000FF,0x7F0000FF);
+        default_clothes_color(hairLights,0x730600FF,0x360100FF);
+    }
+
     for (int i = 0; i < MODULE_EXEC_COUNT; i++) {
         struct module_execution_thread * met = &module_execution_threads[i];
         if (met->cooldown) {
@@ -513,6 +523,19 @@ void animate_wildcolor_module(void) {
     moduleWild[0] = sins(gGlobalTimer * 0x200 + 0x0000) * .5f + .5f;
     moduleWild[1] = sins(gGlobalTimer * 0x200 + 0x5555) * .5f + .5f;
     moduleWild[2] = sins(gGlobalTimer * 0x200 + 0xAAAA) * .5f + .5f;   
+}
+
+void default_clothes_color(Gfx ** lightList, u32 rgba_light, u32 rgba_ambient) {
+    // Somewhat hacky, inject mario's material dls with new color
+    // won't crash N64 i think and that's all that matters
+    while (*lightList != NULL) {
+        Gfx * dlhead = segmented_to_virtual(*lightList);
+        
+        gSPLightColor(dlhead++,LIGHT_1, rgba_light);
+        gSPLightColor(dlhead++,LIGHT_2, rgba_ambient);
+
+        lightList++;
+    }
 }
 
 void update_vanity(void) {
