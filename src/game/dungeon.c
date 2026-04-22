@@ -264,18 +264,6 @@ s32 dungeon_place_loot_in_random_previous_room(s8 loot) {
         }
     }
 
-    if (gSurveyData[SURVEY_SURPRISE] == 2) {
-        switch(loot) {
-            case MOD_NONMOD_KEY:
-            case MOD_NONMOD_STAR:
-            case MOD_PASSIVE:
-            break;
-            default:
-                loot = MOD_NONMOD_MYSTERY_CHEST;
-            break;
-        }
-    }
-
     int chosen_room_index = tinymt32_generate_u32(&gGlobalRandomState)%sDungeonRoomCount;
     for (int i = 0; i < 10; i++) {
         chosen_room_index = tinymt32_generate_u32(&gGlobalRandomState)%sDungeonRoomCount;
@@ -761,9 +749,19 @@ void dungeon_spawn_room_objects(void) {
                 break;
                 case MOD_NONMOD_MYSTERY_CHEST:
                     chest = spawn_object(gMarioObject, MODEL_MCHEST, bhvMysteryChest);
+                    chest->oHealth = j;
+                    break;
+                case MOD_NONMOD_KEY:
+                case MOD_PASSIVE:
+                    chest = spawn_object(gMarioObject, MODEL_CHEST, bhvChest);
                     break;
                 default:
-                    chest = spawn_object(gMarioObject, MODEL_CHEST, bhvChest);
+                    if (gSurveyData[SURVEY_SURPRISE] == 2) {
+                        chest = spawn_object(gMarioObject, MODEL_MCHEST, bhvMysteryChest);
+                        chest->oHealth = j;
+                    } else {
+                      chest = spawn_object(gMarioObject, MODEL_CHEST, bhvChest);
+                    }
             }
             vec3f_copy(&chest->oPosVec,&roomObj->oPosVec);
             s16 angle = sDungeonRoomList[i].direction * 0x4000;

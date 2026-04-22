@@ -1023,6 +1023,15 @@ void bhv_mystery_chest(void) {
             } while (randomModule == firstPick);
             SET_BPARAM4(o->oMysteryChestContents, lootTableVanity[randomModule]);
 
+            // Pre-Determined Loot in Surprise Personalized Dungeons
+            if (gSurveyData[SURVEY_SURPRISE] == 2 && o->dungeonRoom[0] && o->dungeonRoom[0]->loot[o->oHealth] != MOD_NONMOD_MYSTERY_CHEST) {
+                if (tinymt32_generate_u32(&gGlobalRandomState)%2) {
+                    SET_BPARAM2(o->oMysteryChestContents, o->dungeonRoom[0]->loot[o->oHealth]);
+                } else {
+                    SET_BPARAM1(o->oMysteryChestContents, o->dungeonRoom[0]->loot[o->oHealth]);
+                }
+            }
+
             o->oAction = 1;
             if (obj_save_bin_read()) {
                 o->oAction = 5;
