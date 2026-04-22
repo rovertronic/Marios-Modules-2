@@ -1,14 +1,17 @@
-![](https://imgur.com/TVJWmhP.png)
-# Mario's Modules
-Mario is an ancient automaton that must explore the manufacturing dungeon and collect modules to craft moves from scratch.
+![](https://i.imgur.com/YgpRPje.png)
+# Mario's Modules 2
+The .bps patch file can be downloaded in the **GitHub Releases** tab.
 
-The soundtrack used in the hack is from an Undertale fangame called SwApFell: I Hate You., by Igorsantusa and Calem28.
-https://www.youtube.com/playlist?list=PLM6qCncRLG0_SwKbZqDP5u5POkj3H1IcU
 
-**Module System**
+### Soruce Code Guide
 
-You can find the code for the module system in `module.c` in case you want to use it in your own project.
-Custom dungeon objects are at the bottom of `obj_behaviors.c`.
+`game/module.c` - Code for module system.
+
+`game/module_data.inc.c` - Code and data for every individual module in the game.
+
+`game/dungeon.c` - Code for procedural dungeon generation.
+
+`game/obj_behaviors.c` - Code for all custom objects.
 
 
 # ![](https://i.imgur.com/CeOukzk.gif) HackerSM64 ![](https://i.imgur.com/s0LUbTo.gif)
