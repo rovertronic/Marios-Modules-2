@@ -2386,6 +2386,14 @@ s32 render_menus_and_dialogs(void) {
         return;
     }
 
+    if (gModuleMenuOpen) {
+        print_module_menu();
+    } else {
+        print_module_hud_status();
+    }
+
+    print_module_generic_message();
+
     if (gMenuMode != MENU_MODE_NONE) {
         switch (gMenuMode) {
             case MENU_MODE_UNUSED_0:
@@ -2413,13 +2421,6 @@ s32 render_menus_and_dialogs(void) {
         render_dialog_entries();
         //gDialogColorFadeTimer = (s16) gDialogColorFadeTimer + 0x1000;
     }
-
-    if (gModuleMenuOpen) {
-        print_module_menu();
-    } else {
-        print_module_hud_status();
-    }
-    print_module_generic_message();
 
     return 0;
 }

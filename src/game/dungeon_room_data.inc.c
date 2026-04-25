@@ -364,6 +364,10 @@ s8 sRoomBtcmRequiredLoot[] = {
     MOD_EMPTY,
 };
 
+Vec4f sRoomBtcmLootLocations[] = {
+    -15.9822f, 0.f, 11.4792f, 0.f
+};
+
 struct DungeonRoomVariant sRoomBtcm = {
     .metaFlag = 8,
     .minimapDL = &rmapbtcm_rmapbtcm_mesh,
@@ -372,8 +376,8 @@ struct DungeonRoomVariant sRoomBtcm = {
     .model = MODEL_ROOM_BTCM,
     .collision = rbtcm_collision,
     .objectList = NULL,
-    .maxLootCt = 0,
-    //.lootLocations = &sRoomWallJumpLootLocations,
+    .maxLootCt = 1,
+    .lootLocations = &sRoomBtcmLootLocations,
     .requiredLoot = &sRoomBtcmRequiredLoot,
     .easterEgg = TRUE,
 };

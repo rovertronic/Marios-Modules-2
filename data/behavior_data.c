@@ -6520,8 +6520,10 @@ const BehaviorScript bhvDungeonProcGenRoom[] = {
 
 extern void bhv_baldi_door(void);
 const BehaviorScript bhvBaldiDoor[] = {
-    BEGIN(OBJ_LIST_LEVEL),
-    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_LONG(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_DONT_CALC_COLL_DIST )),
+    LOAD_COLLISION_DATA(baldidoor_001_collision),
+    SET_FLOAT(oCollisionDistance, 5000),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_baldi_door),
     END_LOOP(),

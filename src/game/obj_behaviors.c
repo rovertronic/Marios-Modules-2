@@ -1789,6 +1789,7 @@ void bhv_baldi_door(void) {
                 o->oAction = 1;
                 o->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
             }
+            load_object_collision_model();
             break;
         case 1:
             if (o->oTimer > 50) {
