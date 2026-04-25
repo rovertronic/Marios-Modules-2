@@ -11,6 +11,10 @@ Crystal Quest - A roguelike mode where you have three lives and must complete th
 Along the way, you can collect special vanity modules that let you customize Mario’s appearance however you like. Additionally, each run is generated from a unique seed, ensuring that every playthrough looks and feels a little different.
 
 
+The hack also features a fully original OST made by ornevelder.
+https://www.youtube.com/playlist?list=PL9Fu7hnu_cj7OfEaZjTEEv5q86FeWsdmU
+
+
 The .bps patch file can be downloaded in the **GitHub Releases** tab.
 
 
