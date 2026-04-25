@@ -356,6 +356,7 @@ s32 dungeon_room_is_visible(struct DungeonRoom * room) {
     if (room == NULL) {return TRUE;}
     if (gDungeonMarioRoom == NULL) {return TRUE;}
     if (gCurrLevelNum == LEVEL_RF) {return TRUE;}
+    if (room->variant == &sRoomRedCoin && gCamera->cutscene != 0) {return TRUE;}
 
     int id = room->id;
     int index = id/32;

@@ -997,7 +997,7 @@ void render_main_menu(void) {
     if (alpha > 0 && sMainMenuDoFade) {
         gSPDisplayList(gDisplayListHead++, mat_micons_fourslice_layer1);
         gDPSetEnvColor(gDisplayListHead++, 0,0,0, alpha);
-        render_4slice(-50,241,370,0);
+        render_4slice(-70,241,390,0);
     } else {
         sMainMenuDoFade = FALSE;
     }
