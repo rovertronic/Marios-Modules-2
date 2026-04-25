@@ -1811,6 +1811,8 @@ void mario_title_logic(void) {
         gMarioState->marioObj->header.gfx.angle[1] = 0x8000;
         gMarioState->marioObj->header.gfx.animInfo.animFrame = 0;
         set_mario_animation(gMarioState, MARIO_ANIM_IDLE_HEAD_CENTER);
+        gMarioState->marioObj->header.gfx.animInfo.animFrameF = 0.f;
+        gMarioState->marioObj->header.gfx.animInfo.animAccelF = 0.f;
     } else {
         if (gMarioState->action == ACT_TITLE) {
             gMarioState->action = ACT_IDLE;

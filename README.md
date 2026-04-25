@@ -1,5 +1,16 @@
 ![](https://i.imgur.com/YgpRPje.png)
 # Mario's Modules 2
+Mario’s Modules 2 is a hack where you collect primitive elements called “modules” throughout the game and use them to construct entirely new movesets for Mario.
+
+
+The hack features two modes:
+Manusanctuary Escape - A 15-star campaign designed to introduce you to the mechanics and core systems.
+Crystal Quest - A roguelike mode where you have three lives and must complete three procedurally generated levels before facing the final boss.
+
+
+Along the way, you can collect special vanity modules that let you customize Mario’s appearance however you like. Additionally, each run is generated from a unique seed, ensuring that every playthrough looks and feels a little different.
+
+
 The .bps patch file can be downloaded in the **GitHub Releases** tab.
 
 

@@ -355,6 +355,8 @@ static void wiggler_act_knockback(void) {
  * Shrink, then spawn the star and enter the fall through floor action.
  */
 static void wiggler_act_shrink(void) {
+    o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP; // This is a big maybe for a softlock bug fix
+
     if (o->oTimer >= 20) {
         if (o->oTimer == 20) {
             cur_obj_play_sound_2(SOUND_OBJ_ENEMY_DEFEAT_SHRINK);
