@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-#define MARIOS_MODULES_GAME_VERSION 1
+#define MARIOS_MODULES_GAME_VERSION 2
 
 #define INVENTORY_SLOTS_Y 50
 #define INVENTORY_SLOTS_X 8

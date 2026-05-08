@@ -81,6 +81,8 @@ struct inventory_row inventory_row_info[INVENTORY_SLOTS_Y] = {
     [13] = {.type = ROW_STORAGE, .mod_type_prio = -1},
     [14] = {.type = ROW_STORAGE, .mod_type_prio = -1},
 
+    // 15 is reserved for module in hand
+
     // Storage
     //[5] = {.type = ROW_STORAGE, .mod_type_prio = -1},
     //[6] = {.type = ROW_STORAGE, .mod_type_prio = -1},

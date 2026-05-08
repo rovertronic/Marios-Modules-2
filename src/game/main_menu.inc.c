@@ -72,6 +72,8 @@ void save_marios_modules_silent(Vec3f pos) {
     int size = sizeof(struct mariosModulesSaveGame);
 
     if (gSramProbe != 0) {
+        inventory[15][0] = module_in_hand;
+
         gMariosModulesSave.file[gMariosModulesSaveIndex].version = MARIOS_MODULES_GAME_VERSION;
         for (int i = 0; i < 3; i++) {
             gMariosModulesSave.file[gMariosModulesSaveIndex].pos[i] = pos[i];
@@ -118,7 +120,6 @@ void load_marios_modules(void) {
     int sizeFile = sizeof(struct mariosModulesSaveFile);
 
     if (gSramProbe != 0) {
-        module_in_hand = MOD_EMPTY;
 
         if (gMariosModulesSave.save_magic != SAVE_MAGIC) {
             bzero(&gMariosModulesSave, size);
@@ -140,6 +141,8 @@ void load_marios_modules(void) {
         }
 
         update_creative_inventory();
+
+        module_in_hand = inventory[15][0];
     }
 }
 
@@ -398,6 +401,7 @@ Bugfixes:\n\
 → Fixed level vanishing when opening inventory while standing on a sign\n\
 → Fixed improper dialog SFX\n\
 → Fixed modules vanishing when double tapping @Y@C@@ down with a full inventory\n\
+→ Fixed module in hand not being included with the savefile\n\
 \n\
 Adjustments:\n\
 → If Blocks will not spawn in mystery chests until the passive socket is unlocked";
