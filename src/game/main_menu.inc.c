@@ -394,9 +394,10 @@ Additions:\n\
 Bugfixes:\n\
 → Fixed memory corruption when grazing wall in manusanctuary auto challenge\n\
 → Fix corrupted module spawning in novelty dungeons\n\
-→ Fixed softlock when using rewind time after opening a mystery chest\n\
-→ Fixed level vanishing when opening inventory when standing on a sign\n\
+→ Fixed softlock when using Rewind Time after opening a mystery chest\n\
+→ Fixed level vanishing when opening inventory while standing on a sign\n\
 → Fixed improper dialog SFX\n\
+→ Fixed modules vanishing when double tapping @Y@C@@ down with a full inventory\n\
 \n\
 Adjustments:\n\
 → If Blocks will not spawn in mystery chests until the passive socket is unlocked";
@@ -438,6 +439,7 @@ char * sButtonsExtra[] = {
     "Listen to Soundtrack",
     "View Meta Progression",
     "View Journal Entries",
+    "View Changelog",
     "@1@??? - Locked",
     NULL
 };
@@ -871,7 +873,7 @@ void render_main_menu(void) {
         case MAIN_MENU_EXTRA:;
             s32 unlockedCreative = save_get_meta_flag(METAFLAGS_COMPLETION,0) || save_get_meta_flag(METAFLAGS_COMPLETION,1);
             if (unlockedCreative) {
-                sButtonsExtra[3] = "More Ways To Play";
+                sButtonsExtra[4] = "More Ways To Play";
             }
             render_main_menu_hand();
             render_menu_button_list(&sButtonsExtra);
@@ -1209,7 +1211,7 @@ void logic_main_menu(void) {
         case MAIN_MENU_CREDITS:
         case MAIN_MENU_CHANGELOG:
             if (gPlayer1Controller->buttonPressed & (START_BUTTON|A_BUTTON)) {
-                gMainMenuTargetState = MAIN_MENU_MAIN;
+                gMainMenuTargetState = MAIN_MENU_EXTRA;
             }
             break;
         case MAIN_MENU_FILE_VIEW:
@@ -1218,7 +1220,7 @@ void logic_main_menu(void) {
             }
             break;
         case MAIN_MENU_EXTRA:
-            main_menu_handle_scroll(4);
+            main_menu_handle_scroll(5);
             if (gPlayer1Controller->buttonPressed & (B_BUTTON)) {
                 gMainMenuTargetState = MAIN_MENU_MAIN;
                 break;
@@ -1234,7 +1236,10 @@ void logic_main_menu(void) {
                     case 2:
                         gMainMenuTargetState = MAIN_MENU_JOURNAL_ENTRIES;
                         break;
-                    case 3:;
+                    case 3:
+                        gMainMenuTargetState = MAIN_MENU_CHANGELOG;
+                        break;
+                    case 4:;
                         s32 unlockedCreative = save_get_meta_flag(METAFLAGS_COMPLETION,0) || save_get_meta_flag(METAFLAGS_COMPLETION,1);
                         if (unlockedCreative) {
                             gMainMenuTargetState = MAIN_MENU_MORE_WAYS_TO_PLAY;

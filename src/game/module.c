@@ -209,13 +209,17 @@ void add_inventory(s8 module) {
     }
 }
 
-void drop_inventory(s8 module, u8 dropy) {
+s32 drop_inventory(s8 module, u8 dropy) {
     for (int y = dropy; y<INVENTORY_SLOTS_Y; y++) {
+        if (y >= icp->offset + icp->size) {
+            return FALSE;
+        }
+
         for (int x = 0; x<INVENTORY_SLOTS_X; x++) {
             if (inventory[y][x] == MOD_EMPTY && inventory_row_info[y].type == ROW_STORAGE) {
                 inventory[y][x] = module;
                 inventoryParam[y][x] = 0;
-                return;
+                return TRUE;
             }
         }
     }
@@ -781,14 +785,24 @@ void control_module_menu(void) {
             if (!double_tap_return) {
                 inventory_vis_y += 10.0f;
                 s8 mod = inventory[true_inventory_y][inventory_x];
-                drop_inventory(mod,true_inventory_y);
-                inventory[true_inventory_y][inventory_x] = MOD_EMPTY;
+                if (drop_inventory(mod,true_inventory_y)) {;
+                    inventory[true_inventory_y][inventory_x] = MOD_EMPTY;
+                } else {
+                    play_sound(SOUND_MENU_CAMERA_BUZZ, gGlobalSoundSource);
+                }
                 double_tap_return = TRUE;
             } else {
+                u8 buzz = FALSE;
                 for (int i = 0; i < INVENTORY_SLOTS_X; i++) {
                     s8 mod = inventory[true_inventory_y][i];
-                    drop_inventory(mod,true_inventory_y);
-                    inventory[true_inventory_y][i] = MOD_EMPTY;
+                    if (drop_inventory(mod,true_inventory_y)) {
+                        inventory[true_inventory_y][i] = MOD_EMPTY;
+                    } else {
+                        buzz = TRUE;
+                    }
+                }
+                if (buzz) {
+                    play_sound(SOUND_MENU_CAMERA_BUZZ, gGlobalSoundSource);
                 }
             }
             modified_inventory = TRUE;
