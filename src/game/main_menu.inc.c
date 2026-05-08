@@ -393,6 +393,7 @@ Additions:\n\
 \n\
 Bugfixes:\n\
 → Fixed memory corruption when grazing wall in manusanctuary auto challenge\n\
+→ Fix corrupted module spawning in novelty dungeons\n\
 → Fixed softlock when using rewind time after opening a mystery chest\n\
 → Fixed level vanishing when opening inventory when standing on a sign\n\
 → Fixed improper dialog SFX\n\
