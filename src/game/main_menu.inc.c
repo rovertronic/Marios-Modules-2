@@ -393,6 +393,8 @@ Ver 1.1.0\n\
 \n\
 Additions:\n\
 → Added tutorial for @Y@Logic@@ modules\n\
+→ Added star requirement signpost to manusanctuary\n\
+→ Add anti-softlock return warp at end of manusanctuary\n\
 \n\
 Bugfixes:\n\
 → Fixed memory corruption when grazing wall in manusanctuary auto challenge\n\
@@ -404,7 +406,8 @@ Bugfixes:\n\
 → Fixed module in hand not being included with the savefile\n\
 \n\
 Adjustments:\n\
-→ If Blocks will not spawn in mystery chests until the passive socket is unlocked";
+→ If Blocks will not spawn in mystery chests until the passive socket is unlocked\n\
+→ Moved pole drop cutscene camera to better show the new unlocked location";
 
 char * sCreditsStr = "\
 - CREDITS -\n\

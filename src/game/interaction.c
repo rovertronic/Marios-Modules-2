@@ -896,6 +896,7 @@ u32 interact_bbh_entrance(struct MarioState *m, UNUSED u32 interactType, struct 
     return FALSE;
 }
 
+extern s8 dungeon_seq_change;
 u32 interact_warp(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
     u32 action;
 
@@ -911,6 +912,7 @@ u32 interact_warp(struct MarioState *m, UNUSED u32 interactType, struct Object *
                 m->usedObj     = obj;
 
                 sJustTeleported = TRUE;
+                dungeon_seq_change = SEQ_SOUND_PLAYER;
                 return set_mario_action(m, ACT_TELEPORT_FADE_OUT, 0);
             }
         }
