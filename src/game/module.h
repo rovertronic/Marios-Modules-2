@@ -294,9 +294,10 @@ struct mariosModulesSaveFile {
     u32 seed;
 };
 
-#define SAVE_FLAG_EXIST    (1 << 0)
-#define SAVE_FLAG_PASSIVE  (1 << 1)
-#define SAVE_FLAG_COMPLETE (1 << 2)
+#define SAVE_FLAG_EXIST       (1 << 0)
+#define SAVE_FLAG_PASSIVE     (1 << 1)
+#define SAVE_FLAG_COMPLETE    (1 << 2)
+#define SAVE_FLAG_IF_TUTORIAL (1 << 3)
 
 // Metaflags = 8 bits per
 // Intended to be convenient to use with star display

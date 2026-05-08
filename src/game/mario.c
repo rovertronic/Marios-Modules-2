@@ -1981,7 +1981,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         gMarioRecord[gMarioRecordIndex].fVel = gMarioState->forwardVel;
         gMarioRecord[gMarioRecordIndex].yVel = gMarioState->vel[1];
         gMarioRecord[gMarioRecordIndex].action = gMarioState->action;
-        if (gMarioState->action == ACT_STAR_DANCE_EXIT || gMarioState->action == ACT_STAR_DANCE_NO_EXIT) {
+        if (gMarioState->action == ACT_STAR_DANCE_EXIT || gMarioState->action == ACT_STAR_DANCE_NO_EXIT || gMarioState->action == ACT_WAITING_FOR_DIALOG) {
             gMarioRecord[gMarioRecordIndex].action = ACT_IDLE;
             // It's unfun, but sadly necessary to avoid crashing
         }

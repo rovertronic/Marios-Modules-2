@@ -24,8 +24,10 @@
 #include "dungeon.h"
 #include "engine/surface_collision.h"
 
+#define SCREEN_MESSAGE_MAX 15
+
 u8 gModuleTutorialState = TUTORIAL_WAIT_FOR_MODULE_COLLECT;
-struct ScreenMessage sScreenMessageList[15];
+struct ScreenMessage sScreenMessageList[SCREEN_MESSAGE_MAX];
 s8 sScreenMessageCount = -1;
 s8 sScreenMessageIndex = -1;
 
@@ -657,6 +659,19 @@ void control_module_menu(void) {
                 }
                 module_in_hand = module_to_pick_up;
                 module_param_in_hand = module_param_to_pick;
+
+                if (module_infos[module_in_hand].type == MTYPE_LOGIC) {
+                    if (!(gMariosModulesSave.file[gMariosModulesSaveIndex].flags & SAVE_FLAG_IF_TUTORIAL )) {
+                        gMariosModulesSave.file[gMariosModulesSaveIndex].flags |= SAVE_FLAG_IF_TUTORIAL;
+                        display_generic_message("@Y@Logic@@ modules allow conditional branching.");
+                        display_generic_message("Unlike @G@Sequencing@@ modules, @Y@Logic@@ modules resolve instantly.");
+                        display_generic_message("@Y@Logic@@ modules require an if block and an end block.");
+                        display_generic_message("Modules between if and end will execute if condition is met.");
+                        display_generic_message("They are best utilized in the passive socket.");
+                        display_generic_message("They may be confusing at first,");
+                        display_generic_message("But they will be super useful once it clicks for you.");
+                    }
+                }
             }
             modified_inventory = TRUE;
         } else {
@@ -1189,6 +1204,8 @@ char * get_screen_message_buffer(void) {
 }
 
 void add_screen_message(f32 time, char * stringId) {
+    if (sScreenMessageCount >= SCREEN_MESSAGE_MAX-1) {return;}
+
     // Assume usage of sprintf and get_screen_message_buffer before this
     sScreenMessageCount++;
     sScreenMessageList[sScreenMessageCount].time = time;

@@ -302,7 +302,7 @@ char * sModeDescriptions[] = {
     "Infinite modules, everything unlocked. No achievements.",
 };
 
-
+/*
 char * sChangelogStr = "\
 Mario's Modules v1.2\n\
 \n\
@@ -383,6 +383,22 @@ Rebalances:\n\
 → Hover module changed to air platform, no longer follows Mario\n\
 → Hover module incurs .5s cooldown, grows with UPG.\n\
 → Down module behavior now consistent with Wall module";
+*/
+
+char * sChangeLogStr = "\
+Ver 1.1.0\n\
+\n\
+Additions:\n\
+→ Added tutorial for @Y@Logic@@ modules\n\
+\n\
+Bugfixes:\n\
+→ Fixed memory corruption when grazing wall in manusanctuary auto challenge\n\
+→ Fixed softlock when using rewind time after opening a mystery chest\n\
+→ Fixed level vanishing when opening inventory when standing on a sign\n\
+→ Fixed improper dialog SFX\n\
+\n\
+Adjustments:\n\
+→ If Blocks will not spawn in mystery chests until the passive socket is unlocked";
 
 char * sCreditsStr = "\
 - CREDITS -\n\
@@ -408,18 +424,6 @@ RealWorld Paint\n\
 GitHub\n\
 FFmpeg\n\
 Davinci Resolve";
-
-char * sBetaInfo = "\
-Mario's Modules 2 roguelite beta test\n\
-N64 Save Type - SRAM 128\n\
-Use this or roguelite will break, loads file every level init\n\
-\n\
-Notes / Known issues:\n\
-1) Game over screen is scuffed, just reset\n\
-2) Baron's Bounty visuals are WIP\n\
-3) Only 2 levels\n\
-4) False coin counter when reloading game\n\
-5) N64 Only - Scuffed Minimap transform visuals";
 
 char * sButtonsMain[] = {
     "@G@Play",
@@ -845,7 +849,7 @@ void render_main_menu(void) {
             render_mode_info(sMainMenuIndex);
             break;
         case MAIN_MENU_CHANGELOG:
-            render_main_menu_big_text(sBetaInfo);
+            render_main_menu_big_text(sChangeLogStr);
             break;
         case MAIN_MENU_CREDITS:
             render_main_menu_big_text(sCreditsStr);

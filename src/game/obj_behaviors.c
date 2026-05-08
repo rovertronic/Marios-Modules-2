@@ -983,6 +983,25 @@ void bhv_chest(void) {
     */
 }
 
+s32 replace_module_if_logic_before_passive(s8 mod, s8 exclude) {
+    if ( module_infos[mod].type == MTYPE_LOGIC ) {
+        if (!(gMariosModulesSave.file[gMariosModulesSaveIndex].flags & SAVE_FLAG_PASSIVE)) {
+            tinymt32_init(&gGlobalRandomState,mod);
+
+            s8 * lootTable = lootTableTier1;
+            u8 lootCount = sizeof(lootTableTier1);
+            
+            s8 randomModule;
+            do {
+                randomModule = lootTable[tinymt32_generate_u32(&gGlobalRandomState)%lootCount];
+            } while (module_infos[randomModule].type == MTYPE_LOGIC || randomModule == exclude);
+            return randomModule; 
+
+        }
+    }
+    return mod;
+}
+
 void bhv_mystery_chest(void) {
     u8 cost = GET_BPARAM1(o->oBehParams);
 
@@ -1058,8 +1077,8 @@ void bhv_mystery_chest(void) {
                 o->oAction = 2;
 
                 gMysteryModuleState = 1;
-                gMysteryModuleChoice[0] = GET_BPARAM1(o->oMysteryChestContents);
-                gMysteryModuleChoice[1] = GET_BPARAM2(o->oMysteryChestContents);
+                gMysteryModuleChoice[0] = replace_module_if_logic_before_passive( GET_BPARAM1(o->oMysteryChestContents), MOD_EMPTY);
+                gMysteryModuleChoice[1] = replace_module_if_logic_before_passive( GET_BPARAM2(o->oMysteryChestContents), gMysteryModuleChoice[0]);
 
                 gModuleMenuOpen = FALSE;
             }
@@ -1075,11 +1094,11 @@ void bhv_mystery_chest(void) {
             gMysteryModuleSelection = -1;
             if (gPlayer1Controller->rawStickX < -20) {
                 gMysteryModuleSelection = 0;
-                choice = GET_BPARAM1(o->oMysteryChestContents);
+                choice = gMysteryModuleChoice[0];
             }
             if (gPlayer1Controller->rawStickX > 20) {
                 gMysteryModuleSelection = 1;
-                choice = GET_BPARAM2(o->oMysteryChestContents);
+                choice = gMysteryModuleChoice[1];
             }
             if (choice != MOD_EMPTY && (gPlayer1Controller->buttonPressed & A_BUTTON)) {
                 o->oAction = 3;

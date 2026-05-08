@@ -1310,7 +1310,7 @@ void logic_dialog_entries(void) {
     switch (gDialogBoxState) {
         case DIALOG_STATE_OPENING:
             if (gDialogBoxOpenTimer == DEFAULT_DIALOG_BOX_ANGLE) {
-                play_dialog_sound(gDialogID);
+                //play_dialog_sound(gDialogID);
                 play_sound(SOUND_MENU_MESSAGE_APPEAR, gGlobalSoundSource);
             }
 
