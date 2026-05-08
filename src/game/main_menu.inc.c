@@ -392,22 +392,24 @@ char * sChangeLogStr = "\
 Ver 1.1.0\n\
 \n\
 Additions:\n\
-→ Added tutorial for @Y@Logic@@ modules\n\
-→ Added star requirement signpost to manusanctuary\n\
-→ Add anti-softlock return warp at end of manusanctuary\n\
+→ Added tutorial for logic modules\n\
+→ Added star requirement signpost to Manusanctuary\n\
+→ Add anti-softlock return warp at end of Manusanctuary\n\
+\n\
+Adjustments:\n\
+→ If Blocks will not spawn in mystery chests until the passive socket is unlocked\n\
+→ Moved pole drop cutscene camera to better show the new unlocked location\n\
 \n\
 Bugfixes:\n\
-→ Fixed memory corruption when grazing wall in manusanctuary auto challenge\n\
+→ Fixed memory corruption caused by Manusanctuary auto challenge\n\
 → Fix corrupted module spawning in novelty dungeons\n\
 → Fixed softlock when using Rewind Time after opening a mystery chest\n\
 → Fixed level vanishing when opening inventory while standing on a sign\n\
 → Fixed improper dialog SFX\n\
-→ Fixed modules vanishing when double tapping @Y@C@@ down with a full inventory\n\
+→ Fixed modules vanishing when double-tapping C down with a full inventory\n\
 → Fixed module in hand not being included with the savefile\n\
-\n\
-Adjustments:\n\
-→ If Blocks will not spawn in mystery chests until the passive socket is unlocked\n\
-→ Moved pole drop cutscene camera to better show the new unlocked location";
+→ Fixed wiggler star softlock\n\
+→ Minor death barrier fix in Manusanctuary";
 
 char * sCreditsStr = "\
 - CREDITS -\n\

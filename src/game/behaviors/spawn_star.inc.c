@@ -1,5 +1,9 @@
 // spawn_star.inc.c
 
+s32 is_wiggler_star(void) {
+    return obj_has_behavior(o->parentObj,bhvWigglerHead);
+}
+
 static struct ObjectHitbox sCollectStarHitbox = {
     /* interactType:      */ INTERACT_STAR_OR_KEY,
     /* downOffset:        */ 0,
@@ -53,18 +57,20 @@ void bhv_star_spawn_init(void) {
     o->oForwardVel = o->oStarSpawnDisFromHome / 30.0f;
     o->oStarSpawnVelY = o->oPosY;
 
-#ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS
-    if (o->oBehParams2ndByte == SPAWN_STAR_ARC_CUTSCENE_BP_DEFAULT_STAR || gCurrCourseNum == COURSE_BBH) {
-#else
-    if (o->oBehParams2ndByte == SPAWN_STAR_ARC_CUTSCENE_BP_DEFAULT_STAR) {
-#endif
-        cutscene_object(CUTSCENE_STAR_SPAWN, o);
-    } else {
-        cutscene_object(CUTSCENE_RED_COIN_STAR_SPAWN, o);
-    }
+    if (!is_wiggler_star()) {
+    #ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS
+        if (o->oBehParams2ndByte == SPAWN_STAR_ARC_CUTSCENE_BP_DEFAULT_STAR || gCurrCourseNum == COURSE_BBH) {
+    #else
+        if (o->oBehParams2ndByte == SPAWN_STAR_ARC_CUTSCENE_BP_DEFAULT_STAR) {
+    #endif
+            cutscene_object(CUTSCENE_STAR_SPAWN, o);
+        } else {
+            cutscene_object(CUTSCENE_RED_COIN_STAR_SPAWN, o);
+        }
 
-    set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
-    o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
+        set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
+        o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
+    }
     cur_obj_become_intangible();
 }
 

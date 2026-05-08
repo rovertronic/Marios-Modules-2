@@ -1,0 +1,21 @@
+Ver 1.1.0
+
+Additions:
+→ Added tutorial for logic modules
+→ Added star requirement signpost to Manusanctuary
+→ Add anti-softlock return warp at end of Manusanctuary
+
+Adjustments:
+→ If Blocks will not spawn in mystery chests until the passive socket is unlocked
+→ Moved pole drop cutscene camera to better show the new unlocked location
+
+Bugfixes:
+→ Fixed memory corruption caused by Manusanctuary auto challenge
+→ Fix corrupted module spawning in novelty dungeons
+→ Fixed softlock when using Rewind Time after opening a mystery chest
+→ Fixed level vanishing when opening inventory while standing on a sign
+→ Fixed improper dialog SFX
+→ Fixed modules vanishing when double-tapping C down with a full inventory
+→ Fixed module in hand not being included with the savefile
+→ Fixed wiggler star softlock
+→ Minor death barrier fix in Manusanctuary
